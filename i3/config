@@ -199,7 +199,10 @@ gaps outer 5
 exec_always --no-startup-id picom
 
 # Launch polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
+
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh --config=$HOME/.config/polybar/config --Docky
+
 
 #file manager
 bindsym $mod+p exec pcmanfm
@@ -218,6 +221,11 @@ bindsym $mod+b exec brave
 bindsym $mod+period exec code
 
 # shortcut for rofi
-bindsym $mod+Shift+D exec rofi -show drun
+bindsym $mod+Shift+D exec rofi -show drun -theme $HOME/.config/rofi/launchers/type-7/style-7.rasi
 bindsym $mod+Shift+W exec rofi -show window
 bindsym $mod+Shift+F exec rofi -show filebrowser
+# orfi direct
+
+exec --no-startup-id xinput set-prop 13 "libinput Tapping" 1
+
+bindsym --release Print exec flameshot gui
