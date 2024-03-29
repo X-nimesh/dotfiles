@@ -192,20 +192,21 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-gaps inner 10
-gaps outer 5
+gaps inner 5
+gaps outer 2
 
 #launch picom
 exec_always --no-startup-id picom
 
 # Launch polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh --forest
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh --own
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh --panels
 
-# exec_always --no-startup-id $HOME/.config/polybar/launch.sh --config=$HOME/.config/polybar/config --Docky
+# exec_always --no-startup-id $HOME/.config/polybar/launcho.sh --config=$HOME/.config/polybar/config --Docky
 
 
 #file manager
-bindsym $mod+p exec pcmanfm
+bindsym $mod+p exec nautilus
 
 # Set wallpaper
 exec_always feh --bg-scale -r -z $HOME/Pictures/wallpapers
@@ -221,11 +222,26 @@ bindsym $mod+b exec brave
 bindsym $mod+period exec code
 
 # shortcut for rofi
-bindsym $mod+Shift+D exec rofi -show drun -theme $HOME/.config/rofi/launchers/type-7/style-7.rasi
-bindsym $mod+Shift+W exec rofi -show window
-bindsym $mod+Shift+F exec rofi -show filebrowser
+bindsym $mod+Shift+D exec rofi -show drun -theme $HOME/.config/rofi/launchers/type-2/style-5.rasi
+bindsym $mod+Shift+W exec rofi -show window -theme $HOME/.config/rofi/launchers/type-7/style-7.rasi
+bindsym $mod+Shift+F exec rofi -show filebrowser -theme $HOME/.config/rofi/launchers/type-7/style-7.rasi
+
+# bindsym $mod+Shift+N exec rofi -show powermenu -theme $HOME/.config/rofi/powermenu/type-1/style-2.rasi
+bindsym $mod+Shift+N exec $HOME/.config/rofi/rofi-wifi-menu.sh
+
+bindsym $mod+Shift+p exec --no-startup-id $HOME/.config/rofi/scripts/powermenu_t1
+
 # orfi direct
 
 exec --no-startup-id xinput set-prop 13 "libinput Tapping" 1
 
 bindsym --release Print exec flameshot gui
+
+# lock
+bindsym $mod+Alt+L exec betterlockscreen -l
+
+# exec --no-startup-id export GTK_THEME=Adwaita:dark
+
+# clipboard history
+exec --no-startup-id greenclip daemon
+bindsym $mod+Shift+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'  -theme $HOME/.config/rofi/launchers/type-2/style-1.rasi
